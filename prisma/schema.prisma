@@ -16,15 +16,16 @@ model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   lastName       String
-  email          String
-  cpf            String
-  birthdate      String
+  email          String   @unique
+  cpf            String   @unique
+  birthDate      DateTime?  @db.Date
   phoneNumber    String
   volunteerType  String
   area           String
   state          String
   availability   String
   notes          String?
+  password       String
   createdAt      DateTime?  @default(now())
   UpdatedAt      DateTime?  @default(now())
 
@@ -32,5 +33,20 @@ model User {
 }
 
 
+// =============================================================================
+
+model Voluntario {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  nombre     String
+  cpf        String   @unique
+  cfp        String
+  telefone   String
+  email      String   @unique
+  password   String
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @default(now())
+
+  @@map("Voluntario")
+}
 
 

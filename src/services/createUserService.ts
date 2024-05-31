@@ -13,6 +13,7 @@ interface CreateUserProps {
   state: string;
   availability: string;
   notes: string;
+  password:string;
 }
 
 class CreateService {
@@ -29,6 +30,7 @@ class CreateService {
     state,
     availability,
     notes,
+    password       
   }: CreateUserProps) {
     if (!name || !email) {
       throw new Error("Preencha todos os campos");
@@ -39,15 +41,16 @@ class CreateService {
         name,
         lastName,
         email,
-        cpf   ,
-        birthDate   ,
-        phoneNumber ,
+        cpf,
+        birthDate,
+        phoneNumber,
         volunteerType,
         crm,
         area,
         state,
         availability,
         notes,
+        password,      
       },
     });
 

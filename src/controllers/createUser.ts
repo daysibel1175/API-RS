@@ -16,6 +16,7 @@ class CreateUser {
     state,
     availability,
     notes,
+    password       
     } = request.body as {
       name: string;
   lastName: string;
@@ -29,6 +30,7 @@ class CreateUser {
   state: string;
   availability: string;
   notes: string;
+  password     :   string
     };
 
     const service = new CreateService();
@@ -45,6 +47,7 @@ class CreateUser {
       state,
       availability,
       notes,
+      password       
     });
 
     reply.send(cliente);
