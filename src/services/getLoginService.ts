@@ -26,7 +26,11 @@ if(!findLogin){
        password: findLogin.password
     }
  })
- return { message: "login feito"}
+   // Obtener el nombre de usuario
+   const username = findLogin.name;
+
+ return username;
+
   }
 }
 
