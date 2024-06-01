@@ -16,7 +16,7 @@ exports.CreateService = void 0;
 const index_1 = __importDefault(require("../../src/prisma/index"));
 class CreateService {
     execute(_a) {
-        return __awaiter(this, arguments, void 0, function* ({ name, lastName, email, cpf, birthDate, phoneNumber, volunteerType, crm, area, state, availability, notes, password }) {
+        return __awaiter(this, arguments, void 0, function* ({ name, lastName, email, cpf, birthDate, phoneNumber, volunteerType, area, state, availability, notes, password }) {
             if (!name || !email) {
                 throw new Error("Preencha todos os campos");
             }
@@ -29,7 +29,6 @@ class CreateService {
                     birthDate,
                     phoneNumber,
                     volunteerType,
-                    crm,
                     area,
                     state,
                     availability,
