@@ -8,7 +8,6 @@ interface CreateUserProps {
   birthDate    :string;
   phoneNumber:string;
   volunteerType: string;
-  crm: string;
   area: string;
   state: string;
   availability: string;
@@ -25,7 +24,6 @@ class CreateService {
     birthDate   ,
     phoneNumber ,
     volunteerType,
-    crm,
     area,
     state,
     availability,
@@ -45,7 +43,6 @@ class CreateService {
         birthDate,
         phoneNumber,
         volunteerType,
-        crm,
         area,
         state,
         availability,
