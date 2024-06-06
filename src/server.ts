@@ -13,7 +13,10 @@ const start = async () => {
   try {
     await app.register(cors);
     await app.register(routes);
-    await app.listen(port);
+    await app.listen({
+      host: '0.0.0.0',
+      port: 2500
+    });
     console.log(`API REST funcionando en el puerto ${port}`);
   } catch (err) {
     console.error("Error al iniciar el servidor:", err);
