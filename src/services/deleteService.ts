@@ -9,7 +9,7 @@ class DeleteUser {
     if(!id){
         throw new Error("Precisa do id")
     }
-    const findUser = await prismaClient.user.findFirst({
+    const findUser = await prismaClient.lider.findFirst({
         where:{
             id:id
         }
@@ -17,7 +17,7 @@ class DeleteUser {
 if(!findUser){
     throw new Error ("cliente nao existe!")
 }
- await prismaClient.user.delete({
+ await prismaClient.lider.delete({
     where:{
         id: findUser.id
     }
