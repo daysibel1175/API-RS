@@ -4,50 +4,47 @@ import { CreateService } from "../services/createUserService";
 class CreateUser {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const {
-      name,
-    lastName,
-    email,
-    cpf   ,
-    birthDate   ,
-    phoneNumber ,
-    volunteerType,
-    crm,
-    area,
-    state,
-    availability,
-    notes,
-    password       
+      id            ,  
+  name          ,
+  email         ,   
+  cpf           ,   
+  birthDate    , 
+  phoneNumber   ,
+  organization ,
+  area          ,
+  rede_social   ,
+  state         ,
+  notes         ,
+  password      ,
     } = request.body as {
-      name: string;
-  lastName: string;
-  email: string;
-  cpf  :string;
-  birthDate    :string;
-  phoneNumber:string;
-  volunteerType: string;
-  crm: string;
-  area: string;
-  state: string;
-  availability: string;
-  notes: string;
-  password     :   string
+      id            :string;  
+  name          :string;
+  email         :string;   
+  cpf           :string;   
+  birthDate    :string; 
+  phoneNumber   :string;
+  organization :string;
+  area          :string;
+  rede_social   :string;
+  state         :string;
+  notes         :string;
+  password      :string;
     };
 
     const service = new CreateService();
     const cliente = await service.execute({
-      name,
-      lastName,
-      email,
-      cpf   ,
-      birthDate   ,
-      phoneNumber ,
-      volunteerType,
-      crm,
-      area,
-      state,
-      availability,
-      notes,
-      password       
+      id            ,  
+      name          ,
+      email         ,   
+      cpf           ,   
+      birthDate    , 
+      phoneNumber   ,
+      organization ,
+      area          ,
+      rede_social   ,
+      state         ,
+      notes         ,
+      password      ,
     });
 
     reply.send(cliente);

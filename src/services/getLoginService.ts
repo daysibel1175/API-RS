@@ -11,7 +11,7 @@ class GetLogin {
     if(!email || !password){
         throw new Error("Preciso do Email e Senha")
     }
-    const findLogin = await prismaClient.user.findFirst({
+    const findLogin = await prismaClient.lider.findFirst({
         where:{
             email: email,
             password: password
@@ -20,7 +20,7 @@ class GetLogin {
 if(!findLogin){
     throw new Error ("conta nao existe!")
 }
- await prismaClient.user.findFirst({
+ await prismaClient.lider.findFirst({
     where:{
        email: findLogin.email,
        password: findLogin.password

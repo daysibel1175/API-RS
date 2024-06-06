@@ -12,41 +12,69 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
-model User {
+model Lider {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String
-  lastName       String
   email          String   @unique
   cpf            String   @unique
   birthDate      DateTime?  @db.Date
   phoneNumber    String
-  volunteerType  String
+  organization  String
   area           String
+  rede_social    String
   state          String
-  availability   String
   notes          String?
   password       String
   createdAt      DateTime?  @default(now())
   UpdatedAt      DateTime?  @default(now())
 
-  @@map("User")
+  @@map("Lider")
 }
 
 
 // =============================================================================
 
-model Voluntario {
+model Psicologo {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  nombre     String
-  cpf        String   @unique
-  cfp        String
-  telefone   String
-  email      String   @unique
-  password   String
+     name     String
+  email     String             @unique
+  cpf       String           @unique
+    birthDate      DateTime?  @db.Date
+  phoneNumber     String          
+  rede_social     String         @unique
+  pcr     String            @unique
+  specialization     String
+  state     String
+  data     String
+  hour     String
+  notes     String
+  password     String         
   createdAt  DateTime? @default(now())
   updatedAt  DateTime? @default(now())
 
-  @@map("Voluntario")
+  @@map("Psicologo")
 }
+model EducadorSocial {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+     name     String
+  email     String             @unique
+  cpf       String           @unique
+    birthDate      DateTime?  @db.Date
+  phoneNumber     String          
+  rede_social     String         @unique
+  certificate     String            @unique
+    profession   String
+  state     String
+  city String
+  neighborhood String
+availability String
+  data     String
+  hour     String
+  notes     String
+  password     String         
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @default(now())
 
+  @@map("EducadorSocial")
+}
 

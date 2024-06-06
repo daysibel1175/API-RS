@@ -2,7 +2,7 @@ import prismaClient from "../prisma";
 
 class GetUser {
   async execute() {
-    const users = await prismaClient.user.findMany(); 
+    const users = await prismaClient.lider.findMany(); 
 
     return users; //
   }
