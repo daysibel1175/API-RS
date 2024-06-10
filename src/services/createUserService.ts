@@ -1,34 +1,36 @@
 import prismaClient from "../../src/prisma/index";
 
 interface CreateUserProps {
-  id            :string;  
-  name          :string;
-  email         :string;   
-  cpf           :string;   
-  birthDate    :string; 
-  phoneNumber   :string;
-  organization :string;
-  area          :string;
-  rede_social   :string;
-  state         :string;
-  notes         :string;
-  password      :string;
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  phoneNumber: string;
+  organization: string;
+  cnpj: string;
+  area: string;
+  state: string;
+  address: string;
+  notes: string;
+  password: string;
+  termos: boolean;
 }
 
 class CreateService {
   async execute({
-    id            ,  
-  name          ,
-  email         ,   
-  cpf           ,   
-  birthDate    , 
-  phoneNumber   ,
-  organization ,
-  area          ,
-  rede_social   ,
-  state         ,
-  notes         ,
-  password      ,
+    id,
+    name,
+    email,
+    cpf,
+    phoneNumber,
+    organization,
+    cnpj,
+    area,
+    state,
+    address,
+    notes,
+    password,
+    termos,
   }: CreateUserProps) {
     if (!name || !email) {
       throw new Error("Preencha todos os campos");
@@ -36,18 +38,19 @@ class CreateService {
 
     const cliente = await prismaClient.lider.create({
       data: {
-        id            ,  
-        name          ,
-        email         ,   
-        cpf           ,   
-        birthDate    , 
-        phoneNumber   ,
-        organization ,
-        area          ,
-        rede_social   ,
-        state         ,
-        notes         ,
-        password      ,
+        id,
+        name,
+        email,
+        cpf,
+        phoneNumber,
+        organization,
+        cnpj,
+        area,
+        state,
+        address,
+        notes,
+        password,
+        termos,
       },
     });
 
@@ -56,5 +59,3 @@ class CreateService {
 }
 
 export { CreateService };
-
-

@@ -17,17 +17,17 @@ model Lider {
   name           String
   email          String   @unique
   cpf            String   @unique
-  birthDate      DateTime?  @db.Date
   phoneNumber    String
   organization  String
+  cnpj         String
   area           String
-  rede_social    String
   state          String
-  notes          String?
+  address          String?
+  notes            String?
   password       String
   createdAt      DateTime?  @default(now())
   UpdatedAt      DateTime?  @default(now())
-
+  termos          Boolean
   @@map("Lider")
 }
 
@@ -42,13 +42,14 @@ model Psicologo {
     birthDate      DateTime?  @db.Date
   phoneNumber     String          
   rede_social     String         @unique
-  pcr     String            @unique
+  crp     String            @unique
   specialization     String
   state     String
   data     String
   hour     String
   notes     String
-  password     String         
+  password     String    
+  termos    Boolean     
   createdAt  DateTime? @default(now())
   updatedAt  DateTime? @default(now())
 
@@ -71,7 +72,8 @@ availability String
   data     String
   hour     String
   notes     String
-  password     String         
+  password     String  
+  termos    Boolean       
   createdAt  DateTime? @default(now())
   updatedAt  DateTime? @default(now())
 

@@ -5,10 +5,9 @@ import fastify, {
   FastifyReply,
 } from "fastify";
 import { CreateUser } from "./controllers/createUser";
-import {GetUserController} from "./controllers/getUserController"
+import { GetUserController } from "./controllers/getUserController";
 import { DeleteUserController } from "./controllers/deleteUserController";
-import {GetLoginController} from "./controllers/getLoginController"
-
+import { GetLoginController } from "./controllers/getLoginController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -22,7 +21,7 @@ export async function routes(
   );
 
   fastify.post(
-    "/cadastro",
+    "/cadastro/lideres",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new CreateUser().handle(request, reply);
     }
