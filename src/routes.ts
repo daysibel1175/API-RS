@@ -8,6 +8,7 @@ import { CreateUser } from "./controllers/createUser";
 import { GetUserController } from "./controllers/getUserController";
 import { DeleteUserController } from "./controllers/deleteUserController";
 import { GetLoginController } from "./controllers/getLoginController";
+import { CreatePsicologo } from "./controllers/createPsicologo";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -24,6 +25,13 @@ export async function routes(
     "/cadastro/lideres",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new CreateUser().handle(request, reply);
+    }
+  );
+
+  fastify.post(
+    "/cadastro/psicologos",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new CreatePsicologo().handle(request, reply);
     }
   );
 
