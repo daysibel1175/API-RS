@@ -45,7 +45,7 @@ model Psicologo {
   crp     String            @unique
   specialization     String
   state     String
-  data     String
+  day    String?
   hour     String
   notes     String
   password     String    

@@ -14,7 +14,7 @@ class CreatePsicologo {
     crp    ,          
     specialization    ,
     state    ,
-    data    ,
+    day    ,
     hour    ,
     notes    ,
     password    ,    
@@ -30,7 +30,7 @@ class CreatePsicologo {
         crp     :string;          
         specialization     :string;
         state     :string;
-        data     :string;
+        day     :string;
         hour     :string;
         notes     :string;
         password     :string;    
@@ -49,7 +49,7 @@ class CreatePsicologo {
         crp    ,          
         specialization    ,
         state    ,
-        data    ,
+        day    ,
         hour    ,
         notes    ,
         password    ,    

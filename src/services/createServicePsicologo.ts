@@ -11,7 +11,7 @@ interface CreatePsicologoProps {
   crp     :string;          
   specialization     :string;
   state     :string;
-  data     :string;
+  day    :string;
   hour     :string;
   notes     :string;
   password     :string;    
@@ -32,7 +32,7 @@ class CreateServicePsicologo {
     crp    ,          
     specialization    ,
     state    ,
-    data    ,
+    day,
     hour    ,
     notes    ,
     password    ,    
@@ -53,8 +53,8 @@ class CreateServicePsicologo {
         rede_social    ,        
         crp    ,          
         specialization    ,
-        state    ,
-        data    ,
+        state,
+        day,
         hour    ,
         notes    ,
         password    ,    
