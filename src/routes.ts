@@ -9,6 +9,7 @@ import { GetUserController } from "./controllers/getUserController";
 import { DeleteUserController } from "./controllers/deleteUserController";
 import { GetLoginController } from "./controllers/getLoginController";
 import { CreatePsicologo } from "./controllers/createPsicologo";
+import { GetvoluntariosController } from "./controllers/getvoluntariosController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -39,6 +40,12 @@ export async function routes(
     "/clientes",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new GetUserController().handle(request, reply);
+    }
+  );
+  fastify.get(
+    "/voluntarios",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new GetvoluntariosController().handle(request, reply);
     }
   );
   fastify.get(
