@@ -32,7 +32,7 @@ class CreateService {
     password,
     termos,
   }: CreateUserProps) {
-    const fields = { name, email, cpf, phoneNumber, organization, cnpj, area, state, address, notes, password, termos };
+    const fields = { name, email, cpf, phoneNumber, organization, cnpj, area, state, address, password, termos };
 
     for (const [key, value] of Object.entries(fields)) {
       if (!value) {
