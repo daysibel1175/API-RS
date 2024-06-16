@@ -37,7 +37,7 @@ export async function routes(
   );
 
   fastify.get(
-    "/clientes",
+    "/lideres",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new GetUserController().handle(request, reply);
     }
