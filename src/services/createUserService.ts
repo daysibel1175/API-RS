@@ -32,10 +32,22 @@ class CreateService {
     password,
     termos,
   }: CreateUserProps) {
-    if (!name || !email) {
+    if (!name || !email || !cpf || !phoneNumber || !organization || !cnpj || !area || !state || !address || !notes || !password || !termos) {
       throw new Error("Preencha todos os campos");
     }
+    const existingUser = await prismaClient.lider.findFirst({
+      where: {
+        OR: [
+          { cpf: cpf },
+          { email: email }
+        ],
+      },
+    });
 
+    if (existingUser) {
+      throw new Error ("Usuario ya existe" );
+  
+    }
     const cliente = await prismaClient.lider.create({
       data: {
         id,
