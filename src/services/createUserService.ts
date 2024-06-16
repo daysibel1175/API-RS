@@ -32,8 +32,12 @@ class CreateService {
     password,
     termos,
   }: CreateUserProps) {
-    if (!name || !email || !cpf || !phoneNumber || !organization || !cnpj || !area || !state || !address || !notes || !password || !termos) {
-      throw new Error("Preencha todos os campos");
+    const fields = { name, email, cpf, phoneNumber, organization, cnpj, area, state, address, notes, password, termos };
+
+    for (const [key, value] of Object.entries(fields)) {
+      if (!value) {
+        throw new Error(`Preencha o campo ${key}`);
+      }
     }
     const existingUser = await prismaClient.lider.findFirst({
       where: {
