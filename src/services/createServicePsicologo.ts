@@ -38,9 +38,32 @@ class CreateServicePsicologo {
     password    ,    
     termos   ,    
   }: CreatePsicologoProps) {
-    if (!name || !email) {
-      throw new Error("Preencha todos os campos");
+    const fields = { name    ,
+      email    ,         
+      cpf      ,          
+      phoneNumber    ,          
+      rede_social    ,        
+      crp    ,          
+      specialization    ,
+      state    ,
+      day,
+      hour    ,
+      password    ,    
+      termos   ,   };
+
+  for (const [key, value] of Object.entries(fields)) {
+    if (!value) {
+      throw new Error(`Preencha o campo ${key}`);
     }
+  }
+  const existingUser = await prismaClient.educadorSocial.findFirst({
+    where: {
+      OR: [
+        { cpf: cpf },
+        { email: email }
+      ],
+    },
+  });
 
     const psicologo = await prismaClient.psicologo.create({
       data: {

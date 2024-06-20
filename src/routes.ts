@@ -10,6 +10,7 @@ import { DeleteUserController } from "./controllers/deleteUserController";
 import { GetLoginController } from "./controllers/getLoginController";
 import { CreatePsicologo } from "./controllers/createPsicologo";
 import { GetvoluntariosController } from "./controllers/getvoluntariosController";
+import { CreateEducador } from "./controllers/createEducador";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -33,6 +34,13 @@ export async function routes(
     "/cadastro/psicologos",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new CreatePsicologo().handle(request, reply);
+    }
+  );
+
+  fastify.post(
+    "/cadastro/educadorsocial",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new CreateEducador().handle(request, reply);
     }
   );
 
