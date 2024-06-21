@@ -23,8 +23,8 @@ class CreatePsicologo {
         id: string;
         name     :string;
         email     :string;         
-        cpf       :string;          
-        birthDate       :Date; 
+        cpf       :string;         
+        birthDate       : Date; 
         phoneNumber     :string;          
         rede_social     :string;        
         crp     :string;          

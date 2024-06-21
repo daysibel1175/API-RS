@@ -27,7 +27,7 @@ class CreateEducador {
         name     :string;
         email   :string ;           
         cpf     :string ;       
-          birthDate:string;
+          birthDate:Date;
         phoneNumber   :string ;         
         rede_social   :string ;       
         certificate   :string ;         

@@ -5,7 +5,7 @@ interface CreatePsicologoProps {
   name     :string;
   email     :string;         
   cpf       :string;          
-  birthDate       :string; 
+  birthDate       :Date; 
   phoneNumber     :string;          
   rede_social     :string;        
   crp     :string;          
@@ -64,7 +64,10 @@ class CreateServicePsicologo {
       ],
     },
   });
+  if (existingUser) {
+    throw new Error ("Usuario ya existe" );
 
+  }
     const psicologo = await prismaClient.psicologo.create({
       data: {
         id,
