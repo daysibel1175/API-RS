@@ -11,23 +11,24 @@ class GetLogin {
     if(!email || !password){
         throw new Error("Preciso do Email e Senha")
     }
-    
+    const normalizedEmail = email.toLowerCase();
+
     const [liderResult, psicologoResult, educadorSocialResult] = await Promise.all([
       prismaClient.lider.findFirst({
         where: {
-          email: email,
+          email: normalizedEmail,
           password: password,
         },
       }),
       prismaClient.psicologo.findFirst({
         where: {
-          email: email,
+          email: normalizedEmail,
           password: password,
         },
       }),
       prismaClient.educadorSocial.findFirst({
         where: {
-          email: email,
+          email: normalizedEmail,
           password: password,
         },
       }),
