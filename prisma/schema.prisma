@@ -69,7 +69,7 @@ model EducadorSocial {
   city String
   neighborhood String
 availability String
-  data     String
+  day     String
   hour     String
   notes     String
   password     String  
