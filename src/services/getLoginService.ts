@@ -39,7 +39,21 @@ class GetLogin {
 }
 const username = liderResult?.name || psicologoResult?.name || educadorSocialResult?.name;
 
-return username;
+let roleMessage = "";
+
+if (liderResult?.name) {
+    roleMessage = "Lider.";
+} else if (psicologoResult?.name) {
+    roleMessage = "Psicologo.";
+} else if (educadorSocialResult?.name) {
+    roleMessage = "Educadorsocial.";
+} else {
+    roleMessage = "No se ha identificado tu rol específico.";
+}
+const user = {username ,
+             roleMessage}
+
+return user;
 
   }
 }
