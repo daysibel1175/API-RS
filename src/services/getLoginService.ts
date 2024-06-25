@@ -42,11 +42,11 @@ const username = liderResult?.name || psicologoResult?.name || educadorSocialRes
 let roleMessage = "";
 
 if (liderResult?.name) {
-    roleMessage = "Lider.";
+    roleMessage = "Lider";
 } else if (psicologoResult?.name) {
-    roleMessage = "Psicologo.";
+    roleMessage = "Psicologo";
 } else if (educadorSocialResult?.name) {
-    roleMessage = "Educadorsocial.";
+    roleMessage = "Educadorsocial";
 } else {
     roleMessage = "No se ha identificado tu rol específico.";
 }
