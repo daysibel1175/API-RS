@@ -57,7 +57,7 @@ export async function routes(
     }
   );
   fastify.get(
-    "/login/lideres",
+    "/login/usuarios",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new GetLoginController().handle(request, reply);
     }
