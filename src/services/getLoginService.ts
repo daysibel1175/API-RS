@@ -11,25 +11,34 @@ class GetLogin {
     if(!email || !password){
         throw new Error("Preciso do Email e Senha")
     }
-    const findLogin = await prismaClient.lider.findFirst({
-        where:{
-            email: email,
-            password: password
-        }
-})
-if(!findLogin){
+    
+    const [liderResult, psicologoResult, educadorSocialResult] = await Promise.all([
+      prismaClient.lider.findFirst({
+        where: {
+          email: email,
+          password: password,
+        },
+      }),
+      prismaClient.psicologo.findFirst({
+        where: {
+          email: email,
+          password: password,
+        },
+      }),
+      prismaClient.educadorSocial.findFirst({
+        where: {
+          email: email,
+          password: password,
+        },
+      }),
+    ]);
+
+    if (!liderResult && !psicologoResult && !educadorSocialResult) {
     throw new Error ("conta nao existe!")
 }
- await prismaClient.lider.findFirst({
-    where:{
-       email: findLogin.email,
-       password: findLogin.password
-    }
- })
-   // Obtener el nombre de usuario
-   const username = findLogin.name;
+const username = liderResult?.name || psicologoResult?.name || educadorSocialResult?.name;
 
- return username;
+return username;
 
   }
 }
