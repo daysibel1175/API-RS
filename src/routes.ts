@@ -38,7 +38,7 @@ export async function routes(
   );
 
   fastify.post(
-    "/cadastro/educadorsocial",
+    "/cadastro/educadorressociais",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new CreateEducador().handle(request, reply);
     }
