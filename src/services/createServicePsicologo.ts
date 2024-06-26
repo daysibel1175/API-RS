@@ -42,7 +42,6 @@ class CreateServicePsicologo {
       email    ,         
       cpf      ,          
       phoneNumber    ,          
-      rede_social    ,        
       crp    ,          
       specialization    ,
       state    ,

@@ -41,13 +41,13 @@ model Psicologo {
   cpf       String           @unique
     birthDate      DateTime?  @db.Date
   phoneNumber     String          
-  rede_social     String         @unique
+  rede_social     String?      
   crp     String            @unique
   specialization     String
   state     String
   day    String?
-  hour     String
-  notes     String
+  hour     String?
+  notes     String?
   password     String    
   termos    Boolean     
   createdAt  DateTime? @default(now())
@@ -62,7 +62,7 @@ model EducadorSocial {
   cpf       String           @unique
     birthDate      DateTime?  @db.Date
   phoneNumber     String          
-  rede_social     String         @unique
+  rede_social     String?       
   certificate     String            @unique
     profession   String
   state     String
@@ -71,7 +71,7 @@ model EducadorSocial {
 availability String
   day     String
   hour     String
-  notes     String
+  notes     String?
   password     String  
   termos    Boolean       
   createdAt  DateTime? @default(now())
