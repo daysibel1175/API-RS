@@ -55,11 +55,12 @@ class CreateServicePsicologo {
       throw new Error(`Preencha o campo ${key}`);
     }
   }
+  const normalizedEmail = email.toLowerCase();
   const existingUser = await prismaClient.educadorSocial.findFirst({
     where: {
       OR: [
         { cpf: cpf },
-        { email: email }
+        { email: normalizedEmail }
       ],
     },
   });
@@ -71,7 +72,7 @@ class CreateServicePsicologo {
       data: {
         id,
         name    ,
-        email    ,         
+        email: normalizedEmail,       
         cpf      ,          
           birthDate      , 
         phoneNumber    ,          

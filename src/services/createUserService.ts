@@ -39,11 +39,12 @@ class CreateService {
         throw new Error(`Preencha o campo ${key}`);
       }
     }
+    const normalizedEmail = email.toLowerCase();
     const existingUser = await prismaClient.lider.findFirst({
       where: {
         OR: [
           { cpf: cpf },
-          { email: email }
+          { email: normalizedEmail }
         ],
       },
     });
@@ -56,7 +57,7 @@ class CreateService {
       data: {
         id,
         name,
-        email,
+        email: normalizedEmail,
         cpf,
         phoneNumber,
         organization,
