@@ -50,7 +50,7 @@ class CreateService {
     });
 
     if (existingUser) {
-      throw new Error ("Usuario ya existe" );
+      throw new Error ("Usuario ja existe" );
   
     }
     const cliente = await prismaClient.lider.create({

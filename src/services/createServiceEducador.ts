@@ -72,7 +72,7 @@ class CreateServiceEducador {
     });
 
     if (existingUser) {
-      throw new Error ("Usuario ya existe" );
+      throw new Error ("Usuario ja existe" );
   
     }
     const educador = await prismaClient.educadorSocial.create({

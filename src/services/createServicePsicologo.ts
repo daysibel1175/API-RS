@@ -65,7 +65,7 @@ class CreateServicePsicologo {
     },
   });
   if (existingUser) {
-    throw new Error ("Usuario ya existe" );
+    throw new Error ("Usuario ja existe" );
 
   }
     const psicologo = await prismaClient.psicologo.create({
