@@ -15,19 +15,19 @@ class GetLogin {
       prismaClient.lider.findFirst({
         where: {
           email,
-          password, // Use password hashing for security (see note below)
+          password, 
         },
       }),
       prismaClient.psicologo.findFirst({
         where: {
           email,
-          password, // Use password hashing for security (see note below)
+          password, 
         },
       }),
       prismaClient.educadorSocial.findFirst({
         where: {
           email,
-          password, // Use password hashing for security (see note below)
+          password,
         },
       }),
     ]);
