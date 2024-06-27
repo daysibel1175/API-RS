@@ -1,64 +1,72 @@
-import prismaClient from "../prisma"; 
+import prismaClient from "../prisma";
 
-
-interface GetLoginProps{
-   email:string;
-   password:string;
+interface GetLoginProps {
+  email: string;
+  password: string;
 }
 
 class GetLogin {
-  async execute({email, password} : GetLoginProps){
-    if(!email || !password){
-        throw new Error("Preciso do Email e Senha")
+  async execute({ email, password }: GetLoginProps) {
+    if (!email || !password) {
+      throw new Error("Preciso do Email e Senha");
     }
-    const normalizedEmail = email.toLowerCase();
 
     const [liderResult, psicologoResult, educadorSocialResult] = await Promise.all([
       prismaClient.lider.findFirst({
         where: {
-          email: normalizedEmail,
-          password: password,
+          email,
+          password, // Use password hashing for security (see note below)
         },
       }),
       prismaClient.psicologo.findFirst({
         where: {
-          email: normalizedEmail,
-          password: password,
+          email,
+          password, // Use password hashing for security (see note below)
         },
       }),
       prismaClient.educadorSocial.findFirst({
         where: {
-          email: normalizedEmail,
-          password: password,
+          email,
+          password, // Use password hashing for security (see note below)
         },
       }),
     ]);
 
     if (!liderResult && !psicologoResult && !educadorSocialResult) {
-    throw new Error ("conta nao existe!")
-}
-const username = liderResult?.name || psicologoResult?.name || educadorSocialResult?.name;
+      const emailExists = await prismaClient.psicologo.findFirst({
+        where: { email },
+      });
 
-let roleMessage = "";
+      if (!emailExists) {
+        throw new Error("Email não encontrado!");
+      } else {
+        throw new Error("Senha inválida!");
+      }
+    }
 
-if (liderResult?.name) {
-    roleMessage = "Lider";
-} else if (psicologoResult?.name) {
-    roleMessage = "Psicologo";
-} else if (educadorSocialResult?.name) {
-    roleMessage = "Educadorsocial";
-} else {
-    roleMessage = "No se ha identificado tu rol específico.";
-}
-const user = {username ,
-             roleMessage}
+    const username = liderResult?.name || psicologoResult?.name || educadorSocialResult?.name;
 
-return user;
+    let roleMessage = "";
 
+    if (liderResult?.name) {
+      roleMessage = "Lider";
+    } else if (psicologoResult?.name) {
+      roleMessage = "Psicologo";
+    } else if (educadorSocialResult?.name) {
+      roleMessage = "Educadorsocial";
+    } else {
+      roleMessage = "usuario não tem rol.";
+    }
+
+    const user = { username, roleMessage };
+
+    return user;
   }
 }
 
 export { GetLogin };
+
+
 
 
 
