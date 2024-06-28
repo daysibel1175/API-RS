@@ -11,6 +11,7 @@ import { GetLoginController } from "./controllers/getLoginController";
 import { CreatePsicologo } from "./controllers/createPsicologo";
 import { GetvoluntariosController } from "./controllers/getvoluntariosController";
 import { CreateEducador } from "./controllers/createEducador";
+import { UpdatePasswordHandler } from "./controllers/passwordupdatecontroller";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -38,7 +39,7 @@ export async function routes(
   );
 
   fastify.post(
-    "/cadastro/educadorressociais",
+    "/cadastro/educador",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new CreateEducador().handle(request, reply);
     }
@@ -50,13 +51,19 @@ export async function routes(
       return new GetUserController().handle(request, reply);
     }
   );
+  fastify.put(
+    "/atualizarSenha",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new UpdatePasswordHandler().handle(request, reply);
+    }
+  );
   fastify.get(
     "/voluntarios",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new GetvoluntariosController().handle(request, reply);
     }
   );
-  fastify.get(
+  fastify.post(
     "/login/usuarios",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new GetLoginController().handle(request, reply);

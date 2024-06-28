@@ -1,4 +1,5 @@
 import prismaClient from "../prisma";
+import bcrypt from "bcrypt"; // Importa bcrypt
 
 interface GetLoginProps {
   email: string;
@@ -7,6 +8,8 @@ interface GetLoginProps {
 
 class GetLogin {
   async execute({ email, password }: GetLoginProps) {
+    console.log('Contraseña ingresada por el usuario:', password);
+
     if (!email || !password) {
       throw new Error("Preciso do Email e Senha");
     }
@@ -15,39 +18,53 @@ class GetLogin {
       prismaClient.lider.findFirst({
         where: {
           email,
-          password, 
         },
       }),
       prismaClient.psicologo.findFirst({
         where: {
           email,
-          password, 
         },
       }),
       prismaClient.educadorSocial.findFirst({
         where: {
           email,
-          password,
         },
       }),
     ]);
+  
+    let userResult = null;
 
-    if (!liderResult && !psicologoResult && !educadorSocialResult) {
-      const emailExists = await prismaClient.psicologo.findFirst({
-        where: { email },
-      });
-
-      if (!emailExists) {
-        throw new Error("Email não encontrado!");
-      } else {
-        throw new Error("Senha inválida!");
-      }
+    if (liderResult) {
+      userResult = liderResult;
+    } else if (psicologoResult) {
+      userResult = psicologoResult;
+    } else if (educadorSocialResult) {
+      userResult = educadorSocialResult;
+    } else {
+      throw new Error("Email não encontrado!");
     }
 
-    const username = liderResult?.name || psicologoResult?.name || educadorSocialResult?.name;
+   
+    // Solicitar la contraseña almacenada encriptada
+    const storedHashedPassword = userResult.password;
 
+    // Mostrar las dos contraseñas para comparación
+    console.log('Contraseña ingresada por el usuario:', password);
+    console.log('Contraseña almacenada encriptada:', storedHashedPassword);
+
+    // Comparar las contraseñas
+    const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
+
+    if (!passwordMatch) {
+      // Mostrar el error con las dos contraseñas
+      throw new Error(
+        `Senha inválida! \nContraseña ingresada: ${password} \nContraseña almacenada: ${storedHashedPassword}`
+      );
+    }
+
+    const username = userResult.name;
     let roleMessage = "";
-
+    
     if (liderResult?.name) {
       roleMessage = "Lider";
     } else if (psicologoResult?.name) {
@@ -57,7 +74,6 @@ class GetLogin {
     } else {
       roleMessage = "usuario não tem rol.";
     }
-
     const user = { username, roleMessage };
 
     return user;
@@ -65,7 +81,6 @@ class GetLogin {
 }
 
 export { GetLogin };
-
 
 
 
