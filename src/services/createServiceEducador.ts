@@ -1,4 +1,5 @@
 import prismaClient from "../prisma/index";
+import bcrypt from "bcrypt"; 
 
 interface CreateEducadorProps {
     id:string;
@@ -62,12 +63,10 @@ class CreateServiceEducador {
         throw new Error(`Preencha o campo ${key}`);
       }
     }
+    const normalizedEmail = email.toLowerCase();
     const existingUser = await prismaClient.educadorSocial.findFirst({
       where: {
-        OR: [
-          { cpf: cpf },
-          { email: email }
-        ],
+        OR: [{ cpf: cpf }, { email: normalizedEmail }],
       },
     });
 
@@ -75,11 +74,16 @@ class CreateServiceEducador {
       throw new Error ("Usuario ja existe" );
   
     }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+
     const educador = await prismaClient.educadorSocial.create({
       data: {
         id,
         name    ,
-        email   ,           
+        email: normalizedEmail   ,           
         cpf     ,       
           birthDate   ,
         phoneNumber   ,         
@@ -93,7 +97,7 @@ class CreateServiceEducador {
         day,
         hour   ,
         notes   ,
-        password   ,  
+        password : hashedPassword ,  
         termos  ,   
       },
     });

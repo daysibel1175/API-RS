@@ -58,7 +58,7 @@ class CreateServicePsicologo {
     }
 
     const normalizedEmail = email.toLowerCase();
-    const existingUser = await prismaClient.educadorSocial.findFirst({
+    const existingUser = await prismaClient.psicologo.findFirst({
       where: {
         OR: [{ cpf: cpf }, { email: normalizedEmail }],
       },
